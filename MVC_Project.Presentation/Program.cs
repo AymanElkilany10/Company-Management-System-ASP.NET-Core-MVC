@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using MVC_Project.DataAccess.Data.Contexts;
 namespace MVC_Project.Presentation
 {
     public class Program
@@ -7,8 +10,12 @@ namespace MVC_Project.Presentation
             #region Add Service to Container
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            builder.Services.AddControllersWithViews(); 
+            builder.Services.AddControllersWithViews();
+            //builder.Services.AddScoped<ApplicationDbContext>();
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]);
+            });
             #endregion
 
             var app = builder.Build();
