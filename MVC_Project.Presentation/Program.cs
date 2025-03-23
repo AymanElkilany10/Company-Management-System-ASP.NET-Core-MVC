@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using MVC_Project.DataAccess.Data.Contexts;
+using MVC_Project.DataAccess.Repositories;
 namespace MVC_Project.Presentation
 {
     public class Program
@@ -16,6 +17,9 @@ namespace MVC_Project.Presentation
             {
                 options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]);
             });
+
+            builder.Services.AddScoped<IDepartmentRepository,DepartmentRepository>(); 
+
             #endregion
 
             var app = builder.Build();
