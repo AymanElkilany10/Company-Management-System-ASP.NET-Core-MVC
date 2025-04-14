@@ -2,7 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using MVC_Project.BusinessLayer.Services;
 using MVC_Project.DataAccess.Data.Contexts;
-using MVC_Project.DataAccess.Repositories;
+using MVC_Project.DataAccess.Repositories.Classes;
+using MVC_Project.DataAccess.Repositories.Interfaces;
 namespace MVC_Project.Presentation
 {
     public class Program

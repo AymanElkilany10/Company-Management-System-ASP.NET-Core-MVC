@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MVC_Project.BusinessLayer.DataTransferObjects;
 using MVC_Project.BusinessLayer.Factories;
 using MVC_Project.DataAccess.Models;
-using MVC_Project.DataAccess.Repositories;
+using MVC_Project.DataAccess.Repositories.Interfaces;
 
 namespace MVC_Project.BusinessLayer.Services
 {
