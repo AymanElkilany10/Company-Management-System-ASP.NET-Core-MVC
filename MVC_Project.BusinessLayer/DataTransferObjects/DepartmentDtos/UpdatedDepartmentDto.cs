@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVC_Project.BusinessLayer.DataTransferObjects
+namespace MVC_Project.BusinessLayer.DataTransferObjects.DepartmentDtos
 {
     public class UpdatedDepartmentDto
     {

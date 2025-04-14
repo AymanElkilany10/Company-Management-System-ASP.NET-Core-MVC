@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MVC_Project.DataAccess.Models;
 
-namespace MVC_Project.BusinessLayer.DataTransferObjects
+namespace MVC_Project.BusinessLayer.DataTransferObjects.DepartmentDtos
 {
     public class DepartmentDetailsDto
     {
@@ -23,8 +23,8 @@ namespace MVC_Project.BusinessLayer.DataTransferObjects
         public DateOnly? LastModifiedOn { get; set; }
 
         public bool IsDeleted { get; set; }
-        public string Name { get; set; } = null!;
-        public string Code { get; set; } = null!;
+        public string Name { get; set; } = string.Empty;
+        public string Code { get; set; } = string.Empty;
         public string? Description { get; set; }
     }
 }

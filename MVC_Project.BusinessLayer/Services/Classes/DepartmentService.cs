@@ -3,25 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MVC_Project.BusinessLayer.DataTransferObjects;
+using MVC_Project.BusinessLayer.DataTransferObjects.DepartmentDtos;
 using MVC_Project.BusinessLayer.Factories;
+using MVC_Project.BusinessLayer.Services.Interfaces;
 using MVC_Project.DataAccess.Models;
-using MVC_Project.DataAccess.Repositories;
+using MVC_Project.DataAccess.Repositories.Interfaces;
 
-namespace MVC_Project.BusinessLayer.Services
+namespace MVC_Project.BusinessLayer.Services.Classes
 {
-    public class DepartmentService(IDepartmentRepository _departmentRepository) : IDepartmentService
+    public class DepartmentService(IDepartmentRepository departmentRepository) : IDepartmentService
     {
         public IEnumerable<DepartmentDto> GetAllDepartments()
         {
-            var departments = _departmentRepository.GetAll();
+            var departments = departmentRepository.GetAll();
 
             return departments.Select(D => D.ToDepartmentDto());
         }
 
         public DepartmentDetailsDto? GetDepartmentById(int id)
         {
-            var department = _departmentRepository.GetById(id);
+            var department = departmentRepository.GetById(id);
 
             return department is null ? null : department.ToDepartmentDetailsDto();
         }
@@ -30,25 +31,30 @@ namespace MVC_Project.BusinessLayer.Services
         {
             var department = departmentDto.ToEntity();
 
-            return _departmentRepository.Add(department);
+            return departmentRepository.Add(department);
         }
 
         public int UpdateDepartment(UpdatedDepartmentDto departmentDto)
         {
-            return _departmentRepository.Update(departmentDto.ToEntity());
+            return departmentRepository.Update(departmentDto.ToEntity());
         }
 
         public bool DeleteDepartment(int id)
         {
-            var department = _departmentRepository.GetById(id);
+            var department = departmentRepository.GetById(id);
             if (department is null) return false;
             else
             {
-                int Result = _departmentRepository.Remove(department);
+                int Result = departmentRepository.Remove(department);
                 return Result > 0 ? true : false;
 
             }
         }
 
+        public int CreateDepartment(CreatedDepartmentDto departmentDto)
+        {
+            var department = departmentDto.ToEntity();
+            return departmentRepository.Add(department);
+        }
     }
 }

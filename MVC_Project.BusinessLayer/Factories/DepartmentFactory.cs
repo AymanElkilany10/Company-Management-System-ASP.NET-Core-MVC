@@ -4,8 +4,8 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
-using MVC_Project.BusinessLayer.DataTransferObjects;
-using MVC_Project.DataAccess.Models;
+using MVC_Project.BusinessLayer.DataTransferObjects.DepartmentDtos;
+using MVC_Project.DataAccess.Models.DepartmentModel;
 
 namespace MVC_Project.BusinessLayer.Factories
 {
