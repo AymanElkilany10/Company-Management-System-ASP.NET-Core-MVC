@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using MVC_Project.BusinessLayer.Services;
+using MVC_Project.BusinessLayer.Services.Classes;
+using MVC_Project.BusinessLayer.Services.Interfaces;
 using MVC_Project.DataAccess.Data.Contexts;
 using MVC_Project.DataAccess.Repositories.Classes;
 using MVC_Project.DataAccess.Repositories.Interfaces;
@@ -23,6 +24,7 @@ namespace MVC_Project.Presentation
 
             builder.Services.AddScoped<IDepartmentRepository,DepartmentRepository>();
             builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
             #endregion
 

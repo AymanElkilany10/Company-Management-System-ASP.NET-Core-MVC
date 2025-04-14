@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVC_Project.BusinessLayer.DataTransferObjects;
-using MVC_Project.BusinessLayer.Services;
+using MVC_Project.BusinessLayer.DataTransferObjects.DepartmentDtos;
+using MVC_Project.BusinessLayer.Services.Interfaces;
 using MVC_Project.Presentation.ViewModels.DepartmentViewModel;
 
 namespace MVC_Project.Presentation.Controllers

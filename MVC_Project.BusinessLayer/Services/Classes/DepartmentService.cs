@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MVC_Project.BusinessLayer.DataTransferObjects;
+using MVC_Project.BusinessLayer.DataTransferObjects.DepartmentDtos;
 using MVC_Project.BusinessLayer.Factories;
+using MVC_Project.BusinessLayer.Services.Interfaces;
 using MVC_Project.DataAccess.Models;
 using MVC_Project.DataAccess.Repositories.Interfaces;
 
-namespace MVC_Project.BusinessLayer.Services
+namespace MVC_Project.BusinessLayer.Services.Classes
 {
     public class DepartmentService(IDepartmentRepository departmentRepository) : IDepartmentService
     {
