@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using MVC_Project.BusinessLayer.Profiles;
 using MVC_Project.BusinessLayer.Services.Classes;
 using MVC_Project.BusinessLayer.Services.Interfaces;
 using MVC_Project.DataAccess.Data.Contexts;
@@ -25,6 +26,7 @@ namespace MVC_Project.Presentation
             builder.Services.AddScoped<IDepartmentRepository,DepartmentRepository>();
             builder.Services.AddScoped<IDepartmentService, DepartmentService>();
             builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            builder.Services.AddAutoMapper (M=> M.AddProfile(new MappingProfiles()));
 
             #endregion
 
