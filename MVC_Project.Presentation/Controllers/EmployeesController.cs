@@ -42,5 +42,18 @@ namespace MVC_Project.Presentation.Controllers
 
         #endregion
 
+        #region Details of Employee
+
+        [HttpGet]
+        public IActionResult Details(int? id)
+        {
+
+            if (!id.HasValue) return BadRequest();
+            var employee = _employeeService.GetEmployeeById(id.Value);
+            return employee is null ? NotFound() : View(employee);
+        }
+
+        #endregion
+
     }
 }
