@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using MVC_Project.BusinessLayer.Profiles;
@@ -16,7 +17,11 @@ namespace MVC_Project.Presentation
             var builder = WebApplication.CreateBuilder(args);
 
             #region Add Service to Container
-            builder.Services.AddControllersWithViews();
+
+            builder.Services.AddControllersWithViews(Options =>
+            {
+                Options.Filters.Add( new AutoValidateAntiforgeryTokenAttribute() ); 
+            });
             //builder.Services.AddScoped<ApplicationDbContext>();
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             {
