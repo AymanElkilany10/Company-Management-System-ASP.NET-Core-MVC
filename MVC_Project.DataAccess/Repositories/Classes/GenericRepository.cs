@@ -4,16 +4,24 @@ using MVC_Project.DataAccess.Repositories.Interfaces;
 
 namespace MVC_Project.DataAccess.Repositories.Classes
 {
-    public class GenericRepository<TEntity>(ApplicationDbContext _dbContext) : IGenericRepository<TEntity> where TEntity : BaseEntity
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
     {
+        private readonly ApplicationDbContext _dbContext;
+
+        public GenericRepository(ApplicationDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public TEntity? GetById(int id) => _dbContext.Set<TEntity>().Find(id);
 
         public IEnumerable<TEntity> GetAll(bool WithTracking = false)
         {
-            if (WithTracking) return _dbContext.Set<TEntity>().Where(E => E.IsDeleted != true).ToList();
-            else return _dbContext.Set<TEntity>().Where(E => E.IsDeleted != true).AsNoTracking().ToList();
+            if (WithTracking)
+                return _dbContext.Set<TEntity>().Where(E => E.IsDeleted != true).ToList();
+            else
+                return _dbContext.Set<TEntity>().Where(E => E.IsDeleted != true).AsNoTracking().ToList();
         }
-
 
         public int Update(TEntity entity)
         {
@@ -32,5 +40,6 @@ namespace MVC_Project.DataAccess.Repositories.Classes
             _dbContext.Set<TEntity>().Add(entity);
             return _dbContext.SaveChanges();
         }
+
     }
 }

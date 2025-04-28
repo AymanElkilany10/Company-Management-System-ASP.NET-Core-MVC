@@ -7,11 +7,12 @@ using AutoMapper;
 using MVC_Project.BusinessLayer.DataTransferObjects.EmployeeDtos;
 using MVC_Project.BusinessLayer.Services.Interfaces;
 using MVC_Project.DataAccess.Models.EmployeeMode;
+using MVC_Project.DataAccess.Models.Shared;
 using MVC_Project.DataAccess.Repositories.Interfaces;
 
 namespace MVC_Project.BusinessLayer.Services.Classes
 {
-    public class EmployeeService(IEmployeeRepository _employeeRepository, IMapper _mapper) : IEmployeeService
+    public class EmployeeService(IEmployeeRepository _employeeRepository, IMapper _mapper) : IEmployeeService 
     {
         public IEnumerable<EmployeeDto> GetAllEmployees(bool withTracking = false)
         {
