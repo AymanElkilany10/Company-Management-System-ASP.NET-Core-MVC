@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using MVC_Project.BusinessLayer.Profiles;
 using MVC_Project.BusinessLayer.Services.Classes;
 using MVC_Project.BusinessLayer.Services.Interfaces;
 using MVC_Project.DataAccess.Data.Contexts;
@@ -15,7 +17,11 @@ namespace MVC_Project.Presentation
             var builder = WebApplication.CreateBuilder(args);
 
             #region Add Service to Container
-            builder.Services.AddControllersWithViews();
+
+            builder.Services.AddControllersWithViews(Options =>
+            {
+                Options.Filters.Add( new AutoValidateAntiforgeryTokenAttribute() ); 
+            });
             //builder.Services.AddScoped<ApplicationDbContext>();
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             {
@@ -25,6 +31,10 @@ namespace MVC_Project.Presentation
             builder.Services.AddScoped<IDepartmentRepository,DepartmentRepository>();
             builder.Services.AddScoped<IDepartmentService, DepartmentService>();
             builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+
+            builder.Services.AddAutoMapper (M=> M.AddProfile(new MappingProfiles()));
+            
 
             #endregion
 
