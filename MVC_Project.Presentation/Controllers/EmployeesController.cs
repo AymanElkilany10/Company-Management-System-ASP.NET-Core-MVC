@@ -129,6 +129,41 @@ namespace MVC_Project.Presentation.Controllers
 
         #endregion
 
+        #region Delete Employee
+        public IActionResult Delete(int id)
+        {
+            if (id == 0)
+                return BadRequest();
+
+            try
+            {
+                var deleted = _employeeService.DeleteEmployee(id);
+
+                if (deleted)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Employee is not Deleted");
+                    return RedirectToAction(nameof(Delete), new { id = id });
+                }
+            }
+            catch (Exception ex)
+            {
+                if (environment.IsDevelopment())
+                {
+                    // Optionally show a custom message: "Employee could not be deleted"
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    logger.LogError(ex.Message);
+                    return View("Error", ex);
+                }
+            }
+        } 
+        #endregion
 
     }
 }
