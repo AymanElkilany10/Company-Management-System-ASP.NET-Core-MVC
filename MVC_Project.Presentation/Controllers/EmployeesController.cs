@@ -9,7 +9,8 @@ namespace MVC_Project.Presentation.Controllers
 {
     public class EmployeesController(IEmployeeService _employeeService,
         IWebHostEnvironment environment,
-        ILogger<EmployeesController> logger ) : Controller
+        ILogger<EmployeesController> logger,
+        IDepartmentService departmentService) : Controller
     {
         public IActionResult Index()
         {
