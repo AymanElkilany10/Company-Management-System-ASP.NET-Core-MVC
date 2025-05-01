@@ -7,10 +7,9 @@ namespace MVC_Project.DataAccess.Repositories.Classes
 {
     public class GenericRepository<TEntity>(ApplicationDbContext _dbContext) : IGenericRepository<TEntity> where TEntity : BaseEntity
     {
-        public int Add(TEntity entity)
+        public void Add(TEntity entity)
         {
             _dbContext.Set<TEntity>().Add(entity);
-            return _dbContext.SaveChanges();
         }
         
         public IEnumerable<TEntity> GetAll(bool WithTracking = false)
@@ -34,15 +33,13 @@ namespace MVC_Project.DataAccess.Repositories.Classes
                 .Where(predicate).ToList();
         }
         public TEntity? GetById(int id) => _dbContext.Set<TEntity>().Find(id);
-        public int Update(TEntity entity)
+        public void Update(TEntity entity)
         {
             _dbContext.Set<TEntity>().Update(entity);
-            return _dbContext.SaveChanges();
         }
-        public int Remove(TEntity entity)
+        public void Remove(TEntity entity)
         {
             _dbContext.Set<TEntity>().Remove(entity);
-            return _dbContext.SaveChanges();
         }
 
         
