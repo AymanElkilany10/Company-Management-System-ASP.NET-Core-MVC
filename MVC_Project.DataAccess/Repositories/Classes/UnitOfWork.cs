@@ -10,16 +10,16 @@ namespace MVC_Project.DataAccess.Repositories.Classes
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private IEmployeeRepository _employeeRepository;
         private readonly ApplicationDbContext _dbContext;
-        private IDepartmentRepository _departmentRepository;
-        public UnitOfWork(IDepartmentRepository departmentRepository, IEmployeeRepository employeeRepository, ApplicationDbContext dbContext) {
-            _employeeRepository = employeeRepository;
+        private readonly Lazy<IDepartmentRepository>  _departmentRepository;
+        private readonly Lazy<IEmployeeRepository>  _employeeRepository;
+        public UnitOfWork( ApplicationDbContext dbContext) {
             this._dbContext = dbContext;
-            _departmentRepository = departmentRepository;
+            _departmentRepository = new Lazy<IDepartmentRepository>( ()=> new DepartmentRepository(dbContext));
+             _employeeRepository = new Lazy<IEmployeeRepository> (( ()=> new EmployeeRepository(dbContext)));
         }
-        public IEmployeeRepository EmployeeRepository => _employeeRepository; 
-        public IDepartmentRepository DepartmentRepository => _departmentRepository;
+        public IEmployeeRepository EmployeeRepository => _employeeRepository.Value; 
+        public IDepartmentRepository DepartmentRepository => _departmentRepository.Value;
 
         public int SaveChanges() => _dbContext.SaveChanges();
 
