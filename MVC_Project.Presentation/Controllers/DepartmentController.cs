@@ -13,6 +13,8 @@ namespace MVC_Project.Presentation.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            ViewData["Message"] = new DepartmentDto() { Name = "TestViewData" };
+            ViewBag.Message = new DepartmentDto() { Name = "TestViewData" };
             var departments = _departmentService.GetAllDepartments();
             return View(departments);
         }
