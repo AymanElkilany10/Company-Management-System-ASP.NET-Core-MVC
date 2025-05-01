@@ -14,9 +14,15 @@ namespace MVC_Project.BusinessLayer.Services.Classes
 {
     public class EmployeeService(IEmployeeRepository _employeeRepository, IMapper _mapper) : IEmployeeService 
     {
-        public IEnumerable<EmployeeDto> GetAllEmployees(bool withTracking = false)
+        public IEnumerable<EmployeeDto> GetAllEmployees(string? EmployeeSearchName)
         {
-            var employees = _employeeRepository.GetAll(withTracking);
+            //var employees = _employeeRepository.GetAll(E => E.Name.ToLower().Contains(EmployeeSearchName.ToLower()));
+
+            IEnumerable<Employee> employees;
+            if (string.IsNullOrEmpty(EmployeeSearchName))
+                employees = _employeeRepository.GetAll();
+            else
+                employees = _employeeRepository.GetAll(E => E.Name.ToLower().Contains(EmployeeSearchName.ToLower()));
 
             var employeesDto = _mapper.Map<IEnumerable<Employee>, IEnumerable<EmployeeDto>>(employees);
 
