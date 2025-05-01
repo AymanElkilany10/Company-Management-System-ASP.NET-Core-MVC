@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MVC_Project.DataAccess.Models.Shared.Enums;
+﻿using MVC_Project.DataAccess.Models.Shared.Enums;
 using MVC_Project.DataAccess.Models.Shared;
+using MVC_Project.DataAccess.Models.DepartmentModel;
 
 namespace MVC_Project.DataAccess.Models.EmployeeMode
 {
@@ -20,6 +16,8 @@ namespace MVC_Project.DataAccess.Models.EmployeeMode
         public DateTime HiringDate { get; set; }
         public Gender Gender { get; set; }
         public EmployeeType EmployeeType { get; set; }
+        public int? DepartmentId { get; set; }
+        public Department? Department { get; set; }
     }
 
 }
