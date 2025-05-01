@@ -26,6 +26,7 @@ namespace MVC_Project.Presentation
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]);
+                options.UseLazyLoadingProxies();
             });
 
             builder.Services.AddScoped<IDepartmentRepository,DepartmentRepository>();
