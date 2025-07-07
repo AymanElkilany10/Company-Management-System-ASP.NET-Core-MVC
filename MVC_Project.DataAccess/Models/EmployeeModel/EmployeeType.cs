@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVC_Project.DataAccess.Models
+namespace MVC_Project.DataAccess.Models.EmployeeMode
 {
-    public class BaseEntity
+    public enum EmployeeType
     {
+        FullTime = 1,
+        PartTime = 2
     }
 }

@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVC_Project.DataAccess.Models
+namespace MVC_Project.DataAccess.Models.Shared.Enums
 {
-    public class Department : BaseEntity
+    public enum Gender
     {
+        Female = 1,
+        Male = 2
     }
 }
